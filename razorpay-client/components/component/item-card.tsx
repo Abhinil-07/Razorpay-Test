@@ -7,7 +7,7 @@ import axios from "axios";
 export function ItemCard() {
   const checkoutHandler = async () => {
     const response = await axios.post(
-      "http://localhost:4000/api/v1/payment/checkout",
+      "http://localhost:4000/api/payment/checkout",
       {
         amount: 1000,
       }
@@ -15,14 +15,14 @@ export function ItemCard() {
     console.log(response.data);
     const order = response.data.order;
     const options = {
-      key: "rzp_test_F1X0rPEgB9CZc1",
+      key: process.env.RAZORPAY_KEY_ID,
       amount: order.amount,
       currency: "INR",
       name: "6 Pack Programmer",
       description: "Tutorial of RazorPay",
       image: "https://avatars.githubusercontent.com/u/25058652?v=4",
       order_id: order.id,
-      callback_url: "http://localhost:4000/api/v1/paymentverification",
+      callback_url: "http://localhost:4000/api/payment/paymentverification",
       prefill: {
         name: "Gaurav Kumar",
         email: "gaurav.kumar@example.com",
@@ -42,7 +42,7 @@ export function ItemCard() {
     <Card className="w-full max-w-sm rounded-lg overflow-hidden shadow-lg transition-all hover:shadow-xl">
       <Link href="#" className="block" prefetch={false}>
         <img
-          src="/placeholder.svg"
+          src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp14-spacegray-gallery1-202310?wid=4000&hei=3074&fmt=jpeg&qlt=90&.v=1697311136703"
           alt="Macbook"
           width={600}
           height={400}

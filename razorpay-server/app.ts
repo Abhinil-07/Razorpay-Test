@@ -16,9 +16,15 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use("/api/v1/payment", paymentRouter);
+app.use("/api/payment", paymentRouter);
 app.get("/", (req, res) => {
   res.status(200).send("Health check endpoint for server");
+});
+
+app.get("/api/v1/getKey", (req, res) => {
+  res.status(200).json({
+    key_id: process.env.RAZORPAY_KEY_ID,
+  });
 });
 
 export { app };
